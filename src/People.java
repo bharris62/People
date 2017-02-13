@@ -25,6 +25,7 @@ public class People implements Comparable{
         People otherPerson = (People) o;
         return this.last_name.compareTo(otherPerson.last_name);
     }
+
     @Override
     public String toString() {
         return String.format("%s %s from %s", this.first_name, this.last_name, this.country);

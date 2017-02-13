@@ -7,9 +7,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        Global sort = new Global();
+        Global global = new Global();
         Scanner scanner = loadFile();
-        sort.addToMap(scanner);
+        global.addToMap(scanner);
 
     }
 
