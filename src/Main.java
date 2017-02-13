@@ -1,3 +1,5 @@
+import jodd.json.JsonSerializer;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -6,10 +8,13 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         Global global = new Global();
         Scanner scanner = loadFile();
         global.addToMap(scanner);
+        global.sortMap();
+        global.printMap();
+        saveFile();
 
     }
 
@@ -20,14 +25,19 @@ public class Main {
     }
 
 
-    static void saveFile(String letter) throws IOException {
+    static void saveFile() throws IOException {
 
-        File f = new File(letter + "people.json");
+        //Global global = new Global();
+        JsonSerializer serializer = new JsonSerializer();
+        String json = serializer
+                .include("*")
+                .serialize(Global.globe);
+
+        File f = new File("people.json");
         FileWriter fw = new FileWriter(f);
 
-        //fw.write();
-
-        //fw.close();
+        fw.write(json);
+        fw.close();
     }
 }
 
